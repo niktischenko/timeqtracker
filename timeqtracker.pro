@@ -5,7 +5,6 @@
 #-------------------------------------------------
 
 QT       += core gui
-
 TARGET = timeqtracker
 TEMPLATE = app
 
@@ -16,3 +15,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
