@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
 		QMainWindow(parent),
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->showButton, SIGNAL(clicked()), this, SLOT(showTable()));
 	connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
 	connect(ui->taskNameEdit, SIGNAL(textEdited(QString)), this, SLOT(renameCurrentTask(QString)));
+	connect(ui->saveReportButton, SIGNAL(clicked()), this, SLOT(saveReport()));
 }
 
 MainWindow::~MainWindow()
@@ -141,4 +143,20 @@ void MainWindow::save()
 	}
 	stream << "\n";
 	saveFile.close();
+}
+
+void MainWindow::saveReport()
+{
+	QString filename = QFileDialog::getSaveFileName(this, "Choose file to save report", QDir::homePath());
+	QFile reportFile(filename);
+	reportFile.open(QFile::WriteOnly);
+	QTextStream stream(&reportFile);
+	int count = model->rowCount();
+	stream << QDate::currentDate().toString("dd.MM.yyyy") << endl;
+	for (int i = 0; i < count; i++) {
+		stream << i << ") ";
+		stream << model->index(i, 1).data().toString() << "\t";
+		stream << model->index(i, 0).data().toString() << "\n";
+	}
+	reportFile.close();
 }

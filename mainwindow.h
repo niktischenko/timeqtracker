@@ -28,6 +28,7 @@ public slots:
 	void hideTable();
 	void showTable();
 	void clear();
+	void saveReport();
 
 private slots:
 	void updateTime();

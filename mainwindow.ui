@@ -224,6 +224,13 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
+          <widget class="QPushButton" name="saveReportButton">
+           <property name="text">
+            <string>Save report</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="clearButton">
            <property name="text">
             <string>Clear</string>
